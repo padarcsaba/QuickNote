@@ -1,14 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    >
 
-    <TextView
-        android:id="@+id/txtLabel"
+    <com.larswerkman.lobsterpicker.LobsterPicker
+        android:id="@+id/lobsterpicker"
+        android:layout_marginTop="80dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="Lessons"
-        android:textSize="16dp" />
+        android:layout_centerHorizontal="true"
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add category"
+        android:id="@+id/buttonAdd"
+        android:layout_below="@+id/editTextCat"
+        android:layout_alignEnd="@+id/editTextCat"
+        android:layout_alignStart="@+id/btnColor" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Category name"
+        android:id="@+id/editTextCat"
+        android:layout_alignBottom="@+id/btnColor"
+        android:layout_alignEnd="@+id/lobsterpicker"
+        android:layout_toEndOf="@+id/btnColor" />
+
+    <Button
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:id="@+id/btnColor"
+        android:layout_below="@+id/lobsterpicker"
+        android:layout_alignStart="@+id/lobsterpicker" />
 
 </RelativeLayout>
