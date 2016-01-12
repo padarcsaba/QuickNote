@@ -3,6 +3,7 @@
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-
+    <string name="parse_app_id">1vIFQtHPE63Dzpab2Y1wwxkPZ4YELnT1CoUic5UF</string>
+    <string name="parse_client_key">fsCFw78OfoH020nhjZ1l5u7KV3kSn4uqbLP6U0XL</string>
     <string name="action_settings">Settings</string>
 </resources>

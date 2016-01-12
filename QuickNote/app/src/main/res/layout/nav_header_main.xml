@@ -10,12 +10,4 @@
     android:theme="@style/ThemeOverlay.AppCompat.Dark" android:orientation="vertical"
     android:gravity="bottom">
 
-    <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
-        android:paddingTop="@dimen/nav_header_vertical_spacing" android:text="Welcome, Csaba!"
-        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-        android:id="@+id/textView2"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
 </RelativeLayout>

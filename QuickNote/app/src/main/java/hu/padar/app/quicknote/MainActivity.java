@@ -2,6 +2,7 @@ package hu.padar.app.quicknote;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.view.View;
@@ -12,9 +13,14 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.widget.TextView;
+
+import hu.padar.app.quicknote.helper.StorageHelper;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    StorageHelper sh;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,9 +34,20 @@ public class MainActivity extends AppCompatActivity
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
-
+        sh = new StorageHelper(this);
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+
+        Fragment fragment = null;
+        if(sh.getCurrentUser().equals("NO_USER_LOGGED_IN_CURRENTLY")) {
+            fragment = new LoginFragment();
+        } else {
+            fragment = new MyNoteFragment();
+        }
+        FragmentManager fragmentManager = getFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.fragment_place, fragment).commit();
+
     }
 
     @Override
@@ -49,24 +66,29 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        Fragment fragment = null;
+        Fragment fragment = new LoginFragment();
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-
-        switch (id) {
-            case R.id.nav_myNotes :
-                fragment = new MyNoteFragment();
-                break;
-            case R.id.nav_settings :
-                fragment = new SettingsFragment();
-                break;
-            case R.id.nav_categories :
-                fragment = new CategoriesFragment();
-
-                break;
-            case R.id.nav_logout :
-                drawer.closeDrawer(GravityCompat.START);
-                return false;
-            default: break;
+        if(!sh.getCurrentUser().equals("NO_USER_LOGGED_IN_CURRENTLY")) {
+            switch (id) {
+                case R.id.nav_myNotes:
+                    fragment = new MyNoteFragment();
+                    break;
+                case R.id.nav_settings:
+                    fragment = new SettingsFragment();
+                    break;
+                case R.id.nav_categories:
+                    fragment = new CategoriesFragment();
+                    break;
+                case R.id.nav_add_note:
+                    fragment = new AddFragment();
+                    break;
+                case R.id.nav_logout:
+                    drawer.closeDrawer(GravityCompat.START);
+                    fragment = new LoginFragment();
+                    sh.setCurrentUser("NO_USER_LOGGED_IN_CURRENTLY");
+                default:
+                    break;
+            }
         }
         FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.fragment_place, fragment).commit();
