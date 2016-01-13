@@ -3,6 +3,7 @@ package hu.padar.app.quicknote;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.ColorInt;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,6 +50,7 @@ public class CategoriesFragment extends Fragment {
                     categoryObject.put("username", ParseUser.getCurrentUser().getUsername());
                     categoryObject.saveEventually();
                     Toast.makeText(getActivity(), "Category added!", Toast.LENGTH_SHORT).show();
+                    Log.d("CATEGORY: ", "added");
                 }
             }
         });

@@ -5,6 +5,7 @@ import android.app.FragmentManager;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -72,20 +73,25 @@ public class MainActivity extends AppCompatActivity
             switch (id) {
                 case R.id.nav_myNotes:
                     fragment = new MyNoteFragment();
+                    Log.d("MYLOG Selected menu: ", "Notes");
                     break;
                 case R.id.nav_settings:
                     fragment = new SettingsFragment();
+                    Log.d("MYLOG Selected menu: ", "Settings");
                     break;
                 case R.id.nav_categories:
                     fragment = new CategoriesFragment();
+                    Log.d("MYLOG Selected menu: ", "Categories");
                     break;
                 case R.id.nav_add_note:
                     fragment = new AddFragment();
+                    Log.d("MYLOG Selected menu: ", "Add");
                     break;
                 case R.id.nav_logout:
                     drawer.closeDrawer(GravityCompat.START);
                     fragment = new LoginFragment();
                     sh.setCurrentUser("NO_USER_LOGGED_IN_CURRENTLY");
+                    Log.d("MYLOG User", "logout");
                 default:
                     break;
             }

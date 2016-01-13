@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -48,7 +49,7 @@ public class MyNoteFragment extends Fragment {
         floating.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity(), "asaa", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "It is not implemented yet!", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -66,8 +67,15 @@ public class MyNoteFragment extends Fragment {
                     adapterValues.addAll(notes);
                     adapter.notifyDataSetChanged();
                 } else {
-                    Log.d("parse query exeption", e.toString());
-              }
+                    Log.d("Parse query exeption", e.toString());
+                }
+            }
+        });
+
+        listViewNotes.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                return false;
             }
         });
 

@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.parse.FindCallback;
 import com.parse.GetCallback;
@@ -57,7 +58,7 @@ public class AddFragment extends Fragment {
                     spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     spinnerCategory.setAdapter(spinnerArrayAdapter);
                 } else {
-                    Log.d("parse query exeption", e.toString());
+                    Log.d("MYLOG PARSE EXC: ", e.toString());
                 }
             }
         });
@@ -74,7 +75,7 @@ public class AddFragment extends Fragment {
                     query.getFirstInBackground(new GetCallback<ParseObject>() {
                         public void done(ParseObject object, ParseException e) {
                             if (object == null) {
-                                Log.d("parse query", "no result");
+                                Log.d("MYLOG PARSE", "Query no result.");
                             } else {
                                 ParseObject objectto = new ParseObject("Note");
                                 objectto.put("categoryID", spinnerCategory.getSelectedItem().toString());
@@ -82,14 +83,14 @@ public class AddFragment extends Fragment {
                                 objectto.put("username", ParseUser.getCurrentUser().getUsername());
                                 objectto.put("color", object.getNumber("color"));
                                 objectto.saveInBackground();
+                                Log.d("MYLOG PARSE", "Note added.");
+                                Toast.makeText(getActivity(), "Note added succesfully.", Toast.LENGTH_SHORT);
                             }
                         }
                     });
                 }
             }
         });
-
-
         return rootView;
     }
 
